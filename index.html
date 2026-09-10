@@ -361,6 +361,7 @@
     backdrop-filter:blur(2px);
   }
   .hug-overlay.show, .cheer-overlay.show, .birthday-overlay.show{ animation:hug-fade 3s ease forwards; }
+  .cheer-overlay.show{ animation-duration:5s; }
   @keyframes hug-fade{
     0%{ opacity:0; }
     12%{ opacity:1; }
@@ -927,7 +928,68 @@
 </head>
 <body>
 
-<div id="siteContent">
+<!-- LOCK SCREEN: gates the page behind a code, hashed rather than stored in plain text -->
+<div class="lock-screen" id="lockScreen">
+  <div class="lock-card">
+    <svg class="lock-icon" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#D9A93B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="5" y="11" width="14" height="10" rx="2"/>
+      <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+      <path d="M12 15v2"/>
+    </svg>
+    <p class="eyebrow">a little secret, just for you</p>
+    <h1 class="lock-title">Enter The Code</h1>
+    <form id="lockForm" autocomplete="off">
+      <input type="text" id="lockInput" class="lock-input" placeholder="••••" autocomplete="off" autocapitalize="off" spellcheck="false" autofocus>
+      <button type="submit" class="lock-btn">Unlock</button>
+    </form>
+    <p class="lock-error" id="lockError">hmm, that's not quite it — try again</p>
+  </div>
+</div>
+
+<script>
+  // Lock screen: compares a hash of the entered code, not the code itself,
+  // so the real passcode never sits in plain text in the page source.
+  // Default code below is "nice" (case-insensitive) — see chat for how to change it.
+  // Uses a simple synchronous hash (not Web Crypto) so it works even when
+  // opened locally as a file, not just over HTTPS.
+  (function () {
+    const CORRECT_HASH = '7c9b2d04';
+
+    function simpleHash(text) {
+      let hash = 5381;
+      for (let i = 0; i < text.length; i++) {
+        hash = ((hash << 5) + hash + text.charCodeAt(i)) >>> 0;
+      }
+      return hash.toString(16);
+    }
+
+    const lockScreen = document.getElementById('lockScreen');
+    const lockForm = document.getElementById('lockForm');
+    const lockInput = document.getElementById('lockInput');
+    const lockError = document.getElementById('lockError');
+    const siteContent = document.getElementById('siteContent');
+
+    lockForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const guessHash = simpleHash(lockInput.value.trim().toLowerCase());
+
+      if (guessHash === CORRECT_HASH) {
+        siteContent.style.display = '';
+        lockScreen.classList.add('unlocked');
+        setTimeout(() => { lockScreen.style.display = 'none'; }, 650);
+      } else {
+        lockError.classList.add('show');
+        lockInput.classList.remove('shake');
+        void lockInput.offsetWidth; // restart animation
+        lockInput.classList.add('shake');
+        lockInput.value = '';
+        lockInput.focus();
+      }
+    });
+  })();
+</script>
+
+<div id="siteContent" style="display:none;">
 
 <div class="page">
 
@@ -1520,7 +1582,7 @@
   // "photos" folder next to this file. Leave lat/lng at 0 to hide a pin
   // until you fill it in.
   const places = [
-    { photo: "PASTE_PHOTO_LINK_OR_PATH", lat: 0, lng: 0, name: "Place name", caption: "Short memory" },
+    { photo: "girl.jpg", lat: 13.862970371821985, lng: 100.58114589340477, name: "Hoffman Coffee", caption: "Coffee before explore Matter Supply." },
     { photo: "PASTE_PHOTO_LINK_OR_PATH", lat: 0, lng: 0, name: "Place name", caption: "Short memory" },
     { photo: "PASTE_PHOTO_LINK_OR_PATH", lat: 0, lng: 0, name: "Place name", caption: "Short memory" },
   ];
