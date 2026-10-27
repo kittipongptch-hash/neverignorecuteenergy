@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Someone Missing You</title>
+<title>Something Sweet — For You</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Caveat:wght@500;600&family=Jost:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -1458,8 +1458,8 @@
     starLayer.appendChild(star);
   }
 
-  // ---- Countdown to Oct 31, 2026, 9:00 AM (Bangkok time) ----
-  const countdownTarget = new Date('2026-10-31T09:00:00+07:00');
+  // ---- Countdown to Fri Oct 30, 2026, 7:00 PM (Bangkok time, GMT+7) ----
+  const countdownTarget = new Date('2026-10-30T19:00:00+07:00');
   const cdDays = document.getElementById('cdDays');
   const cdHours = document.getElementById('cdHours');
   const cdMinutes = document.getElementById('cdMinutes');
@@ -1482,40 +1482,8 @@
     triggerHugMoment(iconRect.left + iconRect.width / 2, iconRect.top + iconRect.height / 2);
   });
 
-  // ---- Flower of the Day: 31 flowers so every day of any month is unique ----
+  // ---- Flower of the Day: 60 flowers, no repeats within any 60-day stretch ----
   const flowers = [
-    { name: "Rose", meaning: "Love and deep romance.", petals: 8, shape: "pointed", color: "#C2477B", center: "#D9A93B" },
-    { name: "Sunflower", meaning: "Loyalty and warmth, always turning toward the light.", petals: 12, shape: "pointed", color: "#E8B23D", center: "#4A2F1B" },
-    { name: "Tulip", meaning: "A simple, perfect declaration of love.", petals: 6, shape: "round", color: "#E0577A", center: "#D9A93B" },
-    { name: "Cherry Blossom", meaning: "The beauty of life — brief, and precious because of it.", petals: 5, shape: "notched", color: "#F4C6D9", center: "#D9A93B" },
-    { name: "Lily", meaning: "Purity, renewal, and quiet devotion.", petals: 6, shape: "pointed", color: "#FFF9EF", center: "#C98A3D" },
-    { name: "Daisy", meaning: "Innocence, simplicity, and new beginnings.", petals: 14, shape: "round", color: "#FFFFFF", center: "#E8B23D" },
-    { name: "Lavender", meaning: "Calm, grace, and quiet devotion.", petals: 8, shape: "pointed", color: "#9678AE", center: "#5B4470" },
-    { name: "Peony", meaning: "Prosperity, honor, and a happy love.", petals: 10, shape: "round", color: "#E8A0B8", center: "#D9A93B" },
-    { name: "Orchid", meaning: "Rare beauty, strength, and refined love.", petals: 5, shape: "pointed", color: "#B15FBE", center: "#D9A93B" },
-    { name: "Iris", meaning: "Faith, hope, and wisdom.", petals: 6, shape: "pointed", color: "#5B4B8A", center: "#D9A93B" },
-    { name: "Camellia", meaning: "A deep, longing affection.", petals: 8, shape: "round", color: "#A32A4A", center: "#D9A93B" },
-    { name: "Hydrangea", meaning: "Heartfelt gratitude and understanding.", petals: 5, shape: "round", color: "#7FA8C9", center: "#FFF9EF" },
-    { name: "Chrysanthemum", meaning: "Loyalty, joy, and a long life together.", petals: 16, shape: "pointed", color: "#E08E3E", center: "#4A2F1B" },
-    { name: "Jasmine", meaning: "Sweetness, and a quiet, modest love.", petals: 6, shape: "round", color: "#FFFDF5", center: "#E8B23D" },
-    { name: "Poppy", meaning: "Remembrance, and a bit of magic.", petals: 4, shape: "round", color: "#D9534F", center: "#2B1220" },
-    { name: "Marigold", meaning: "The warmth of the sun, and a reason to celebrate.", petals: 12, shape: "pointed", color: "#E8A33D", center: "#4A2F1B" },
-    { name: "Freesia", meaning: "Trust, and quiet thoughtfulness.", petals: 6, shape: "pointed", color: "#F3E3A0", center: "#D9A93B" },
-    { name: "Carnation", meaning: "A lasting, devoted bond.", petals: 14, shape: "round", color: "#E7A6C4", center: "#C2477B" },
-    { name: "Bluebell", meaning: "Humility, and a love that lasts.", petals: 6, shape: "pointed", color: "#6C8CC7", center: "#FFF9EF" },
-    { name: "Anemone", meaning: "Anticipation, and a fragile kind of beauty.", petals: 6, shape: "round", color: "#7A3B5E", center: "#2B1220" },
-    { name: "Gardenia", meaning: "A secret, unspoken love.", petals: 8, shape: "round", color: "#FFFDF5", center: "#E8B23D" },
-    { name: "Magnolia", meaning: "Nobility, dignity, and quiet perseverance.", petals: 8, shape: "round", color: "#F1D9C9", center: "#8A5A3A" },
-    { name: "Violet", meaning: "Modesty, and quiet faithfulness.", petals: 5, shape: "round", color: "#5C3B6E", center: "#E8B23D" },
-    { name: "Forget-Me-Not", meaning: "A true love that never fades, even at a distance.", petals: 5, shape: "round", color: "#8FB8E0", center: "#E8B23D" },
-    { name: "Hibiscus", meaning: "Delicate, fleeting beauty and rare charm.", petals: 5, shape: "pointed", color: "#E0625A", center: "#D9A93B" },
-    { name: "Lotus", meaning: "Rebirth, purity, and rising above the hard days.", petals: 10, shape: "pointed", color: "#EAAFC4", center: "#D9A93B" },
-    { name: "Wisteria", meaning: "Devotion, and a love that lingers long after.", petals: 6, shape: "round", color: "#A78BC0", center: "#FFF9EF" },
-    { name: "Daffodil", meaning: "New beginnings, and unmatched joy.", petals: 6, shape: "round", color: "#F0C93D", center: "#C9791F" },
-    { name: "Snapdragon", meaning: "Grace under pressure, and hidden strength.", petals: 6, shape: "pointed", color: "#C6598F", center: "#D9A93B" },
-    { name: "Cosmos", meaning: "Harmony, order, and a peaceful heart.", petals: 10, shape: "round", color: "#F3C9D9", center: "#E8B23D" },
-    { name: "Amaryllis", meaning: "Pride, determination, and radiant beauty.", petals: 6, shape: "pointed", color: "#B23A3A", center: "#D9A93B" },
-
     { name: "Azalea", meaning: "Take care of yourself — a fragile, delicate passion.", petals: 5, shape: "round", color: "#E8729E", center: "#D9A93B" },
     { name: "Begonia", meaning: "Uniqueness, and deep gratitude.", petals: 6, shape: "round", color: "#F0A6C4", center: "#FFF9EF" },
     { name: "Calla Lily", meaning: "Magnificent beauty.", petals: 5, shape: "pointed", color: "#FFFDF5", center: "#E8B23D" },
@@ -1545,7 +1513,37 @@
     { name: "Buttercup", meaning: "Charm, and childhood joy.", petals: 5, shape: "round", color: "#F0C93D", center: "#C9791F" },
     { name: "Foxglove", meaning: "Healing, and a creative spark.", petals: 6, shape: "notched", color: "#8B3A62", center: "#FFF9EF" },
     { name: "Geranium", meaning: "True friendship, and comfort.", petals: 5, shape: "round", color: "#D9534F", center: "#4A2F1B" },
-    { name: "Aster", meaning: "Patience, and a love that waits.", petals: 14, shape: "pointed", color: "#9678AE", center: "#E8B23D" }
+    { name: "Aster", meaning: "Patience, and a love that waits.", petals: 14, shape: "pointed", color: "#9678AE", center: "#E8B23D" },
+    { name: "Protea", meaning: "May you feel brave and bold in whatever you do today.", petals: 14, shape: "pointed", color: "#E8729E", center: "#8A3A5C" },
+    { name: "Bird of Paradise", meaning: "May today feel light, free, and full of joy.", petals: 5, shape: "pointed", color: "#E8A33D", center: "#5B4B8A" },
+    { name: "Lilac", meaning: "May something sweet remind you of how loved you are.", petals: 4, shape: "round", color: "#B79AD1", center: "#FFF9EF" },
+    { name: "Lily of the Valley", meaning: "May happiness find its way back to you today.", petals: 6, shape: "round", color: "#FFFDF5", center: "#E9CE8A" },
+    { name: "Bougainvillea", meaning: "May your day be vivid, warm, and full of color.", petals: 3, shape: "round", color: "#D6338A", center: "#F0C93D" },
+    { name: "Plumeria", meaning: "May a gentle new beginning find you today.", petals: 5, shape: "round", color: "#FFFDF5", center: "#F0C93D" },
+    { name: "Water Lily", meaning: "May your mind feel as calm as still water.", petals: 12, shape: "pointed", color: "#F3C9D9", center: "#E8B23D" },
+    { name: "Cornflower", meaning: "May hope follow you quietly through the whole day.", petals: 8, shape: "notched", color: "#6C8CC7", center: "#5B4B8A" },
+    { name: "Honeysuckle", meaning: "May you feel my steady affection, even from far away.", petals: 5, shape: "pointed", color: "#F6D58A", center: "#E8729E" },
+    { name: "Lisianthus", meaning: "May you feel appreciated in every little moment.", petals: 8, shape: "round", color: "#9678AE", center: "#FFF9EF" },
+    { name: "Lupine", meaning: "May your imagination take you somewhere lovely today.", petals: 5, shape: "pointed", color: "#7F6FD0", center: "#FFF9EF" },
+    { name: "Hyacinth", meaning: "May something make you smile for no reason at all.", petals: 6, shape: "pointed", color: "#B8A1E3", center: "#FFF9EF" },
+    { name: "Bleeding Heart", meaning: "May you be as kind to yourself as you are to others.", petals: 4, shape: "round", color: "#E8729E", center: "#FFF9EF" },
+    { name: "Dianthus", meaning: "May you feel just how admired you are.", petals: 10, shape: "notched", color: "#E0577A", center: "#FFF9EF" },
+    { name: "Gerbera", meaning: "May little cheerful moments find you all day long.", petals: 16, shape: "pointed", color: "#F28C5A", center: "#4A2F1B" },
+    { name: "Alstroemeria", meaning: "May you always feel how devoted my heart is.", petals: 6, shape: "pointed", color: "#F4A6B8", center: "#8A3A5C" },
+    { name: "Statice", meaning: "May your day end with a small, happy win.", petals: 5, shape: "round", color: "#8E6FA8", center: "#FFF9EF" },
+    { name: "Baby's Breath", meaning: "May little everyday love notes fill your day.", petals: 5, shape: "round", color: "#FFFDF5", center: "#E9CE8A" },
+    { name: "Delphinium", meaning: "May your day be big-hearted and bright.", petals: 5, shape: "pointed", color: "#4A63B8", center: "#FFF9EF" },
+    { name: "Love-in-a-Mist", meaning: "May love find you even on the busiest, foggiest day.", petals: 8, shape: "pointed", color: "#8FB8E0", center: "#5B4B8A" },
+    { name: "Crocus", meaning: "May good news arrive early and gently today.", petals: 6, shape: "pointed", color: "#9B7ED0", center: "#E8A33D" },
+    { name: "Snowdrop", meaning: "May you feel a little hope after a long week.", petals: 6, shape: "pointed", color: "#FFFFFF", center: "#9FC07A" },
+    { name: "Plum Blossom", meaning: "May you bloom gracefully through anything hard.", petals: 5, shape: "round", color: "#F0A6C4", center: "#C2477B" },
+    { name: "Orange Blossom", meaning: "May good fortune and gentle joy follow you today.", petals: 5, shape: "round", color: "#FFFDF5", center: "#F0C93D" },
+    { name: "Chamomile", meaning: "May you get a moment to rest and breathe slowly.", petals: 14, shape: "round", color: "#FFFFFF", center: "#F0C93D" },
+    { name: "Blue Salvia", meaning: "May you feel me thinking of you right now.", petals: 5, shape: "pointed", color: "#4F6FD0", center: "#FFF9EF" },
+    { name: "Anthurium", meaning: "May ease and abundance come your way today.", petals: 5, shape: "round", color: "#D9334A", center: "#F0C93D" },
+    { name: "Bellflower", meaning: "May you feel how constant my thoughts of you are.", petals: 5, shape: "pointed", color: "#7A6BC4", center: "#FFF9EF" },
+    { name: "Fuchsia", meaning: "May warmth wrap around you wherever you are.", petals: 4, shape: "pointed", color: "#C6338A", center: "#8B3A62" },
+    { name: "Moonflower", meaning: "May you feel me beside you under the same moon.", petals: 5, shape: "round", color: "#F5F1FF", center: "#E9CE8A" }
   ];
 
   function petalPath(shape) {
@@ -1567,7 +1565,7 @@
     return `<svg width="${size}" height="${size}" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">${petalsMarkup}<circle cx="60" cy="60" r="13" fill="${flower.center}"/></svg>`;
   }
 
-  // Day-of-year cycles through all flowers — with 61 flowers, no repeats
+  // Day-of-year cycles through all flowers — with 60 flowers, no repeats
   // within roughly any 2-month stretch, so a single calendar month never
   // sees the same flower twice. Wraps around and starts over each cycle.
   function getDayOfYear(date) {
