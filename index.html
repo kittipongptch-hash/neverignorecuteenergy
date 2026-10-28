@@ -187,6 +187,64 @@
     margin:0;
   }
 
+  /* ---------- MOON: tap to reveal the photo + message ---------- */
+  .moon-btn{
+    background:none;
+    border:none;
+    padding:6px;
+    border-radius:50%;
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+    animation:moon-glow 3.5s ease-in-out infinite;
+    transition:transform .3s ease;
+  }
+  .moon-btn:hover{ transform:scale(1.08); }
+  @keyframes moon-glow{
+    0%,100%{ filter:drop-shadow(0 0 6px rgba(233,206,138,.25)); }
+    50%{ filter:drop-shadow(0 0 18px rgba(233,206,138,.65)); }
+  }
+
+  .moon-overlay{
+    position:fixed;
+    inset:0;
+    z-index:999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:8vh 8vw;
+    cursor:pointer;
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .7s ease, visibility .7s ease;
+    background-color:#0B1026;
+    background-image: linear-gradient(rgba(11,16,38,.55), rgba(11,16,38,.55)), url('images/couple.jpg');
+    background-size: cover, cover;
+    background-position: center, center;
+    background-repeat: no-repeat, no-repeat;
+  }
+  .moon-overlay.show{ opacity:1; visibility:visible; }
+
+  .moon-text{
+    margin:0;
+    text-align:center;
+    font-family:'Hiragino Mincho ProN','Yu Mincho','Noto Serif CJK JP','Noto Serif JP',serif;
+    font-weight:600;
+    font-size:clamp(1.8rem, 7vw, 2.6rem);
+    letter-spacing:.12em;
+    color:var(--gold-soft);
+    text-shadow:0 2px 18px rgba(0,0,0,.65);
+    opacity:0;
+    transform:translateY(12px);
+    transition:opacity .9s ease .5s, transform .9s ease .5s;
+  }
+  .moon-overlay.show .moon-text{ opacity:1; transform:translateY(0); }
+  .moon-overlay:not(.show) .moon-text{ transition-delay:0s; }
+
+  @media (prefers-reduced-motion:reduce){
+    .moon-btn{ animation:none; }
+    .moon-overlay, .moon-text{ transition:none; }
+  }
+
   /* ---------- RIGHT PANEL ---------- */
   .right-panel{
     background:var(--blush);
@@ -1135,6 +1193,10 @@
       </div>
     </div>
 
+    <div class="moon-overlay" id="moonOverlay" role="dialog" aria-label="A message under the moon">
+      <p class="moon-text">月が綺麗ですね</p>
+    </div>
+
     <audio id="hugSound" preload="auto" src="sounds/hug.mp3"></audio>
 
     <div class="hero">
@@ -1143,9 +1205,11 @@
       <p class="script">until I get to hold you again</p>
 
       <div class="countdown-wrap">
-        <svg class="moon-icon" width="64" height="64" viewBox="0 0 70 70">
-          <path d="M42 8 C 20 8, 8 24, 8 42 C 8 58, 22 70, 38 68 C 24 60, 16 46, 20 30 C 24 16, 36 8, 42 8 Z" fill="#E9CE8A"/>
-        </svg>
+        <button class="moon-btn" id="moonBtn" type="button" aria-label="Look at the moon">
+          <svg class="moon-icon" width="64" height="64" viewBox="0 0 70 70">
+            <path d="M42 8 C 20 8, 8 24, 8 42 C 8 58, 22 70, 38 68 C 24 60, 16 46, 20 30 C 24 16, 36 8, 42 8 Z" fill="#E9CE8A"/>
+          </svg>
+        </button>
         <div class="countdown-grid">
           <div class="countdown-unit">
             <span class="countdown-value" id="cdDays">--</span>
@@ -1474,6 +1538,23 @@
   }
   updateCountdown();
   setInterval(updateCountdown, 1000);
+
+  // ---- Moon: tap to reveal the photo + message ----
+  const moonBtn = document.getElementById('moonBtn');
+  const moonOverlay = document.getElementById('moonOverlay');
+
+  function hideMoon() {
+    clearTimeout(moonOverlay._hideTimer);
+    moonOverlay.classList.remove('show');
+  }
+
+  moonBtn.addEventListener('click', () => {
+    moonOverlay.classList.add('show');
+    clearTimeout(moonOverlay._hideTimer);
+    moonOverlay._hideTimer = setTimeout(hideMoon, 9000);
+  });
+  moonOverlay.addEventListener('click', hideMoon);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hideMoon(); });
 
   // Hug ticket button (right panel)
   const hugTicketBtn = document.getElementById('hugTicketBtn');
