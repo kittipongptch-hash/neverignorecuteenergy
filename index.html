@@ -245,6 +245,46 @@
     .moon-overlay, .moon-text{ transition:none; }
   }
 
+  /* ---------- 8-BIT SCENE: boy watching the plane ---------- */
+  .pixel-scene{
+    display:block;
+    width:100%;
+    max-width:300px;
+    height:auto;
+    margin:26px auto 0;
+    image-rendering:pixelated;
+    box-shadow:0 0 0 3px var(--plum-deep), 0 0 0 6px var(--gold-soft), 0 14px 30px -8px rgba(0,0,0,.55);
+  }
+  /* steps() keeps every motion in chunky, retro pixel hops */
+  .px-plane{ transform:translateX(36px); animation:px-plane-fly 18s steps(76) infinite; }
+  .px-plane-bob{ animation:px-bob 1.6s steps(1) infinite; }
+  .px-blink{ animation:px-blink 1s steps(1) infinite; }
+  .px-cloud-1{ transform:translateX(58px); animation:px-cloud 70s steps(64) -30s infinite; }
+  .px-cloud-2{ transform:translateX(34px); animation:px-cloud 105s steps(64) -70s infinite; }
+  .px-stars-a{ animation:px-twinkle-a 1.8s steps(1) infinite; }
+  .px-stars-b{ animation:px-twinkle-b 1.8s steps(1) infinite; }
+  .px-arm-down{ animation:px-arm-down 5s steps(1) infinite; }
+  .px-arm-up{ opacity:0; animation:px-arm-up 5s steps(1) infinite; }
+  .px-heart{ opacity:1; animation:px-heart 5s steps(4) infinite; }
+
+  @keyframes px-plane-fly{ from{ transform:translateX(-26px); } to{ transform:translateX(125px); } }
+  @keyframes px-bob{ 0%{ transform:translateY(0); } 50%{ transform:translateY(1px); } }
+  @keyframes px-blink{ 0%{ opacity:1; } 50%{ opacity:0; } }
+  @keyframes px-cloud{ from{ transform:translateX(-24px); } to{ transform:translateX(104px); } }
+  @keyframes px-twinkle-a{ 0%{ opacity:1; } 50%{ opacity:.25; } }
+  @keyframes px-twinkle-b{ 0%{ opacity:.25; } 50%{ opacity:1; } }
+  @keyframes px-arm-down{ 0%{ opacity:1; } 60%{ opacity:0; } 70%{ opacity:1; } 80%{ opacity:0; } 90%{ opacity:1; } }
+  @keyframes px-arm-up{ 0%{ opacity:0; } 60%{ opacity:1; } 70%{ opacity:0; } 80%{ opacity:1; } 90%{ opacity:0; } }
+  @keyframes px-heart{
+    0%,59%{ opacity:0; transform:translateY(0); }
+    60%{ opacity:1; transform:translateY(0); }
+    100%{ opacity:0; transform:translateY(-4px); }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .pixel-scene *{ animation:none !important; }
+  }
+
   /* ---------- RIGHT PANEL ---------- */
   .right-panel{
     background:var(--blush);
@@ -1204,6 +1244,65 @@
       <h1 class="headline">COUNTING<br><em>Down</em></h1>
       <p class="script">until I get to hold you again</p>
 
+      <svg class="pixel-scene" viewBox="0 0 100 50" shape-rendering="crispEdges" role="img" aria-label="Pixel art of a boy on a hill, waving at an airplane crossing the night sky while he waits for her">
+        <rect y="0" width="100" height="8" fill="#0B1026"/>
+        <rect y="8" width="100" height="8" fill="#101B3C"/>
+        <rect y="16" width="100" height="8" fill="#15244C"/>
+        <rect y="24" width="100" height="7" fill="#1D3160"/>
+        <rect y="31" width="100" height="5" fill="#2A3F78"/>
+        <rect y="36" width="100" height="4" fill="#4A4F96"/>
+        <rect y="40" width="100" height="10" fill="#7A5C9E"/>
+        <g class="px-stars-a"><path fill="#FFF9EF" d="M44 3h1v1h-1zM6 4h1v1h-1zM78 5h1v1h-1zM61 8h1v1h-1zM23 9h1v1h-1zM91 11h1v1h-1zM35 15h1v1h-1z"/></g>
+        <g class="px-stars-b"><path fill="#FFF9EF" d="M70 2h1v1h-1zM96 4h1v1h-1zM28 5h1v1h-1zM14 12h1v1h-1zM52 12h1v1h-1zM86 18h1v1h-1z"/></g>
+        <path fill="#E9CE8A" d="M18 5h1v1h-1zM17 6h3v1h-3zM18 7h1v1h-1zM82 13h1v1h-1zM81 14h3v1h-3zM82 15h1v1h-1z"/>
+        <g class="px-cloud-1">
+          <path fill="#4A5E9A" d="M4 20h4v1h-4zM2 21h2v1h-2zM9 21h2v1h-2zM1 22h1v1h-1zM12 22h1v1h-1zM0 23h1v1h-1zM14 23h1v1h-1z"/>
+          <path fill="#2C3C72" d="M4 21h5v1h-5zM2 22h10v1h-10zM1 23h13v1h-13z"/>
+        </g>
+        <g class="px-cloud-2">
+          <path fill="#4A5E9A" d="M2 28h3v1h-3zM1 29h1v1h-1zM6 29h2v1h-2zM0 30h1v1h-1zM8 30h1v1h-1z"/>
+          <path fill="#2C3C72" d="M2 29h4v1h-4zM1 30h7v1h-7z"/>
+        </g>
+        <g class="px-plane">
+          <g class="px-plane-bob">
+            <path fill="#FFF9EF" d="M-21 16h1v1h-1zM-15 16h1v1h-1zM-10 16h1v1h-1zM-6 16h1v1h-1zM-3 16h1v1h-1z"/>
+            <path fill="#D9534F" d="M2 12h2v1h-2zM3 13h2v1h-2zM3 14h2v1h-2z"/>
+            <path fill="#F4F1EA" d="M5 14h1v1h-1zM2 15h15v1h-15zM1 16h2v1h-2zM4 16h1v1h-1zM6 16h1v1h-1zM8 16h1v1h-1zM10 16h1v1h-1zM12 16h7v1h-7zM7 18h4v1h-4z"/>
+            <path fill="#7FB5E8" d="M3 16h1v1h-1zM5 16h1v1h-1zM7 16h1v1h-1zM9 16h1v1h-1zM11 16h1v1h-1z"/>
+            <path fill="#B9C0D2" d="M2 17h17v1h-17zM8 19h4v1h-4z"/>
+            <path fill="#8790AA" d="M8 20h4v1h-4z"/>
+            <rect class="px-blink" x="3" y="12" width="1" height="1" fill="#FF5A5A"/>
+          </g>
+        </g>
+        <path fill="#0A1220" d="M12 45h10v1h-10zM6 46h20v1h-20zM90 46h10v1h-10zM0 47h32v1h-32zM80 47h20v1h-20zM0 48h100v1h-100zM0 49h100v1h-100z"/>
+        <path fill="#12263A" d="M12 43h10v1h-10zM6 44h20v1h-20zM90 44h10v1h-10zM0 45h12v1h-12zM22 45h10v1h-10zM80 45h20v1h-20zM0 46h6v1h-6zM26 46h64v1h-64zM32 47h48v1h-48z"/>
+        <path fill="#1F4A44" d="M12 42h10v1h-10zM6 43h6v1h-6zM22 43h4v1h-4zM90 43h10v1h-10zM0 44h6v1h-6zM26 44h6v1h-6zM80 44h10v1h-10zM32 45h48v1h-48z"/>
+        <path fill="#2F6B5A" d="M12 41h10v1h-10zM6 42h6v1h-6zM22 42h4v1h-4zM90 42h10v1h-10zM0 43h6v1h-6zM26 43h6v1h-6zM80 43h10v1h-10zM32 44h48v1h-48z"/>
+        <g class="px-boy">
+          <path fill="#4A3426" d="M15 25h4v1h-4zM14 26h5v1h-5zM13 27h4v1h-4zM13 28h3v1h-3zM14 29h1v1h-1z"/>
+          <path fill="#6B4A35" d="M19 26h1v1h-1z"/>
+          <path fill="#F2C9A0" d="M17 27h3v1h-3zM16 28h2v1h-2zM19 28h1v1h-1zM15 29h6v1h-6zM15 30h4v1h-4zM16 31h1v1h-1z"/>
+          <path fill="#1B1420" d="M18 28h1v1h-1z"/>
+          <path fill="#D9A87E" d="M19 30h1v1h-1zM17 31h1v1h-1z"/>
+          <path fill="#9DB8D9" d="M14 32h5v1h-5zM13 33h7v1h-7zM13 34h6v1h-6zM13 35h6v1h-6zM14 36h5v1h-5z"/>
+          <path fill="#7D9ABF" d="M19 34h1v1h-1zM19 35h1v1h-1z"/>
+          <path fill="#3A4560" d="M14 37h2v1h-2zM17 37h2v1h-2zM14 38h2v1h-2zM17 38h2v1h-2zM14 39h2v1h-2zM17 39h2v1h-2z"/>
+          <path fill="#E8E1D0" d="M13 40h3v1h-3zM17 40h3v1h-3z"/>
+          <g class="px-arm-down">
+            <path fill="#7D9ABF" d="M19 33h1v1h-1zM19 34h1v1h-1z"/>
+            <path fill="#F2C9A0" d="M19 35h1v1h-1z"/>
+          </g>
+          <g class="px-arm-up">
+            <path fill="#7D9ABF" d="M19 33h3v1h-3z"/>
+            <path fill="#F2C9A0" d="M22 30h1v1h-1zM22 31h1v1h-1zM22 32h1v1h-1z"/>
+          </g>
+        </g>
+        <g class="px-heart">
+          <path fill="#E8729E" d="M14 16h2v1h-2zM17 16h2v1h-2zM13 17h1v1h-1zM15 17h5v1h-5zM13 18h7v1h-7zM14 19h5v1h-5zM15 20h3v1h-3zM16 21h1v1h-1z"/>
+          <path fill="#F6A8C4" d="M14 17h1v1h-1z"/>
+        </g>
+      </svg>
+
       <div class="countdown-wrap">
         <button class="moon-btn" id="moonBtn" type="button" aria-label="Look at the moon">
           <svg class="moon-icon" width="64" height="64" viewBox="0 0 70 70">
@@ -1522,8 +1621,8 @@
     starLayer.appendChild(star);
   }
 
-  // ---- Countdown to Fri Oct 30, 2026, 7:00 PM (Bangkok time, GMT+7) ----
-  const countdownTarget = new Date('2026-10-30T19:00:00+07:00');
+  // ---- Countdown to Thu Nov 26, 2026, 9:00 AM (Bangkok time, GMT+7) ----
+  const countdownTarget = new Date('2026-11-26T09:00:00+07:00');
   const cdDays = document.getElementById('cdDays');
   const cdHours = document.getElementById('cdHours');
   const cdMinutes = document.getElementById('cdMinutes');
